@@ -44,6 +44,13 @@ public class RowGameModel
 
     public void setPlayer(String player)
     {
+
+        // defensive programming was used to check if the player field is null or has invalid value. In either case, the exception is thrown
+        if(!player.equals("1") && !player.equals("2") || player == null)
+        {
+            throw new IllegalArgumentException("Player value cannot be null or invalid");
+        }
+
         this.player = player;
     }
 }
