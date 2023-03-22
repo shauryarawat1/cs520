@@ -10,7 +10,9 @@ public class RowGameModel
     /**
      * The current player taking their turn
      */
-    public String player = "1";
+
+    // the player field was made private
+    private String player = "1";
     public int movesLeft = 9;
 
     private String finalResult = null;
@@ -32,5 +34,16 @@ public class RowGameModel
 
     public void setFinalResult(String finalResult) {
 	this.finalResult = finalResult;
+    }
+
+    //getter and setter methods were created for the player for access and modification just like finalResult
+    public String getPlayer()
+    {
+        return this.player;
+    }
+
+    public void setPlayer(String player)
+    {
+        this.player = player;
     }
 }
