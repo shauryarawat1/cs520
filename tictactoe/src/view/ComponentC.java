@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JTextArea;
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -30,18 +31,18 @@ public class ComponentC implements View{
     // Depending upon the current player, the related text is set
     public void update(RowGameModel model, int row, int column, int trigger)
     {
-        if(model.movesLeft%2 == 1 || model.getFinalResult() == null)
+        if(model.getFinalResult() != null)
+        {
+            playerturn.setText(model.getFinalResult());
+        }
+
+        else if(model.movesLeft % 2 == 1)
         {
             playerturn.setText("Player 1 to play 'X'");
         }
-        else if(model.movesLeft % 2 != 1)
+        else
         {
             playerturn.setText("Player 2 to play 'O'");
-        }
-        
-        else if(model.getFinalResult() != null)
-        {
-            playerturn.setText(model.getFinalResult());
         }
     }
 }

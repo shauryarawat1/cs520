@@ -46,16 +46,15 @@ public class ComponentA implements View {
     //updates the text and state of a particular button from the model code. It also prevents overwriting of other player's move
     public void update(RowGameModel model, int row, int column, int trigger)
     {
-        blocks[row][column].setText(model.blocksData[row][column].getContents());
-        
-        if(model.getPlayer() == Player.USER_1)
+
+        String data =  model.blocksData[row][column].getContents();
+
+        if (data.isEmpty() || blocks[row][column].getText().isEmpty())
         {
-            blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
+            blocks[row][column].setText(data);
         }
-        else if(model.getPlayer() == Player.USER_2)
-        {
-            blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
-        }
+
+        blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
     }
 }
 
