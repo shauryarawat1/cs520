@@ -8,23 +8,24 @@ import controller.RowGameController;
 
 public class ComponentA implements View {
     // certain elements from the base code of RowGamGUI are used here such as game and block
-    private JPanel game;
-    private JButton[][] block;
+    public RowGameModel gameModel;
+    public JPanel game;
+    public JButton[][] blocks;
 
-    // Creates the game layout
+    // Constructor for the class and creates the game layout
     public ComponentA(RowGameController controller)
     {
         game = new JPanel(new GridLayout(3, 3));
-        block = new JButton[3][3];
+        blocks = new JButton[3][3];
 
         for(int row = 0; row < 3; row++)
         {
             for(int col = 0; col < 3; col++)
             {
-                block[row][col] = new JButton();
-                block[row][col].setPreferredSize(new Dimension(75, 75));
-                game.add(block[row][col]);
-                block[row][col].addActionListener(new ActionListener() {
+                blocks[row][col] = new JButton();
+                blocks[row][col].setPreferredSize(new Dimension(75, 75));
+                game.add(blocks[row][col]);
+                blocks[row][col].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e)
                     {
                         controller.move((JButton)e.getSource());
@@ -40,17 +41,11 @@ public class ComponentA implements View {
         return game;
     }
 
-    //updates the text and state of each button from the model code
-    public void update(RowGameModel model)
+    //updates the text and state of a particular button from the model code
+    public void update(RowGameModel model, int row, int column, int trigger)
     {
-        for(int row = 0; row < 3; row++)
-        {
-            for(int col = 0; col < 3; col++)
-            {
-                block[row][col].setText(model.blocksData[row][col].getContents());
-                block[row][col].setEnabled(model.blocksData[row][col].getIsLegalMove());
-            }
-        }
+        blocks[row][column].setText(model.blocksData[row][column].getContents());
+        blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
     }
 }
 

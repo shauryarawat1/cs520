@@ -76,14 +76,20 @@ public class RowGameGUI implements View {
      */
 
      // The new update function with updates of both components A and C
-    public void update(RowGameModel gameModel) {
+    public void update(RowGameModel gameModel, int row, int column, int trigger) {
     /* 
 	blocks[row][column].setText(gameModel.blocksData[row][column].getContents());
 	blocks[row][column].setEnabled(gameModel.blocksData[row][column].getIsLegalMove());
     */
 
-    compA.update(gameModel);
-    compC.update(gameModel);
+    if(trigger == 1)
+    {
+        compA.update(gameModel, row, column, trigger);
+    }
+    else if(trigger == 2)
+    {
+        compC.update(gameModel, row, column, trigger);
+    }
     }
 
 }

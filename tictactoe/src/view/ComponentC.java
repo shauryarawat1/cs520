@@ -7,7 +7,8 @@ import model.RowGameModel;
 import model.RowGameModel.Player;
 
 public class ComponentC implements View{
-    private JTextArea playerturn;
+    public RowGameModel gameModel;
+    public JTextArea playerturn;
 
     //Constructor for the class and is called at the beginning of the game
     public ComponentC()
@@ -26,15 +27,20 @@ public class ComponentC implements View{
     }
 
     // Depending upon the current player, the related text is set
-    public void update(RowGameModel model)
+    public void update(RowGameModel model, int row, int column, int trigger)
     {
-        if(model.getPlayer() == Player.USER_1)
+        if(gameModel.movesLeft % 2 == 1 || gameModel.getFinalResult() == null)
         {
             playerturn.setText("Player 1 to play 'X'");
         }
-        else
+        else if(gameModel.movesLeft % 2 != 1)
         {
-            playerturn.setText("Player 2 to play 'O'")
+            playerturn.setText("Player 2 to play 'O'");
+        }
+        
+        else if(gameModel.getFinalResult() != null)
+        {
+            playerturn.setText(gameModel.getFinalResult());
         }
     }
 }
