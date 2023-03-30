@@ -7,9 +7,11 @@ import model.RowGameModel;
 import controller.RowGameController;
 
 public class ComponentA implements View {
+    // certain elements from the base code of RowGamGUI are used here such as game and block
     private JPanel game;
     private JButton[][] block;
 
+    // Creates the game layout
     public ComponentA(RowGameController controller)
     {
         game = new JPanel(new GridLayout(3, 3));
@@ -32,11 +34,13 @@ public class ComponentA implements View {
         }
     }
 
+    // Returns the created layout
     public JPanel getGamePanel()
     {
         return game;
     }
 
+    //updates the text and state of each button from the model code
     public void update(RowGameModel model)
     {
         for(int row = 0; row < 3; row++)

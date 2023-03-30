@@ -9,12 +9,14 @@ import model.RowGameModel.Player;
 public class ComponentC implements View{
     private JTextArea playerturn;
 
-    public Text_for_turn()
+    //Constructor for the class and is called at the beginning of the game
+    public ComponentC()
     {
         playerturn = new JTextArea();
         playerturn.setText("Player 1 to play 'X'");
     }
 
+    // Used to create the message panel and show the message
     public JPanel getMessagePanel()
     {
         JPanel messages = new JPanel(new FlowLayout());
@@ -23,6 +25,7 @@ public class ComponentC implements View{
         return messages;
     }
 
+    // Depending upon the current player, the related text is set
     public void update(RowGameModel model)
     {
         if(model.getPlayer() == Player.USER_1)
