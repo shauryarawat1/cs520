@@ -15,17 +15,21 @@ public class RowGameGUI implements View {
     public RowGameModel gameModel = new RowGameModel();
     public JButton reset = new JButton("Reset");
     private RowGameController controller;
-    public ComponentA compA = new ComponentA(controller);
+    public ComponentA compA;
     public ComponentC compC = new ComponentC();
     
 
     /**
      * Creates a new game initializing the GUI.
+     * @param componentA
      */
-    public RowGameGUI(RowGameController controller) {
+    public RowGameGUI(RowGameController controller, ComponentA componentA) {
+        this.controller = controller;
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(new Dimension(500, 350));
         gui.setResizable(true);
+
+        compA = new ComponentA(controller);
 
         JPanel gamePanel = new JPanel(new FlowLayout());
         gamePanel.add(compA.getGamePanel(), BorderLayout.CENTER);
@@ -75,7 +79,7 @@ public class RowGameGUI implements View {
      * @param column The column that contains the block
      */
 
-     // The new update function with updates of both components A and C
+     // The new update function with updates of both components A and C and includes a trigger for which change to make
     public void update(RowGameModel gameModel, int row, int column, int trigger) {
     /* 
 	blocks[row][column].setText(gameModel.blocksData[row][column].getContents());

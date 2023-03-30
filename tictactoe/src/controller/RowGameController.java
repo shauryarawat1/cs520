@@ -11,6 +11,7 @@ import model.RowGameModel;
 
 // The Player enumerated type is imported along with the game model code
 import model.RowGameModel.Player;
+import view.ComponentA;
 import view.RowGameGUI;
 
 public class RowGameController {
@@ -22,7 +23,8 @@ public class RowGameController {
      */
     public RowGameController() {
 	gameModel = new RowGameModel();
-	gameView = new RowGameGUI(this);
+	// Creating a new RowGameGUI object and passing it the current object and a new ComponentA object.
+	gameView = new RowGameGUI(this, new ComponentA(this));
 
         for(int row = 0; row<3; row++) {
             for(int column = 0; column<3 ;column++) {

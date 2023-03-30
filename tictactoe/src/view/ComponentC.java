@@ -1,19 +1,20 @@
 package view;
 
 import javax.swing.JTextArea;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
 import model.RowGameModel;
 import model.RowGameModel.Player;
 
 public class ComponentC implements View{
-    public RowGameModel gameModel;
-    public JTextArea playerturn;
+    // the playerturn is set to JLabel since it is non-editable
+    public JLabel playerturn;
 
     //Constructor for the class and is called at the beginning of the game
     public ComponentC()
     {
-        playerturn = new JTextArea();
+        playerturn = new JLabel();
         playerturn.setText("Player 1 to play 'X'");
     }
 
@@ -29,18 +30,18 @@ public class ComponentC implements View{
     // Depending upon the current player, the related text is set
     public void update(RowGameModel model, int row, int column, int trigger)
     {
-        if(gameModel.movesLeft % 2 == 1 || gameModel.getFinalResult() == null)
+        if(model.movesLeft%2 == 1 || model.getFinalResult() == null)
         {
             playerturn.setText("Player 1 to play 'X'");
         }
-        else if(gameModel.movesLeft % 2 != 1)
+        else if(model.movesLeft % 2 != 1)
         {
             playerturn.setText("Player 2 to play 'O'");
         }
         
-        else if(gameModel.getFinalResult() != null)
+        else if(model.getFinalResult() != null)
         {
-            playerturn.setText(gameModel.getFinalResult());
+            playerturn.setText(model.getFinalResult());
         }
     }
 }

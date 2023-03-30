@@ -4,17 +4,19 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
 import model.RowGameModel;
+import model.RowGameModel.Player;
 import controller.RowGameController;
 
 public class ComponentA implements View {
     // certain elements from the base code of RowGamGUI are used here such as game and block
-    public RowGameModel gameModel;
     public JPanel game;
     public JButton[][] blocks;
+    private RowGameController controller;
 
     // Constructor for the class and creates the game layout
     public ComponentA(RowGameController controller)
     {
+        this.controller = controller;
         game = new JPanel(new GridLayout(3, 3));
         blocks = new JButton[3][3];
 
@@ -41,11 +43,19 @@ public class ComponentA implements View {
         return game;
     }
 
-    //updates the text and state of a particular button from the model code
+    //updates the text and state of a particular button from the model code. It also prevents overwriting of other player's move
     public void update(RowGameModel model, int row, int column, int trigger)
     {
         blocks[row][column].setText(model.blocksData[row][column].getContents());
-        blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
+        
+        if(model.getPlayer() == Player.USER_1)
+        {
+            blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
+        }
+        else if(model.getPlayer() == Player.USER_2)
+        {
+            blocks[row][column].setEnabled(model.blocksData[row][column].getIsLegalMove());
+        }
     }
 }
 
